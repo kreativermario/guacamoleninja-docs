@@ -15,6 +15,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Commands',
       items: [
+        'commands/weather',
         'commands/uptime',
         'commands/server',
         'commands/config',

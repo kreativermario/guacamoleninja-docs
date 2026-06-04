@@ -16,7 +16,6 @@ Displays information about the current Discord server.
 
 An embed showing:
 - Server name and icon
-- **Owner** — username of the server owner
 - **Members** — total member count
 - **Created** — server creation date
 - **ID** — Discord server ID

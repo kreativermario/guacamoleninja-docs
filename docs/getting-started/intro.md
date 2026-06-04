@@ -4,14 +4,22 @@ sidebar_position: 1
 
 # Introduction
 
-guacamoleninja-bot is a Discord bot built with [discord.js v14](https://discord.js.org/) and TypeScript, running on Node.js 24.
+guacamoleninja-bot is a Discord utility bot for small communities, built with [discord.js v14](https://discord.js.org/) and TypeScript on Node.js 24.
 
-## Features
+## Commands
 
-- `/uptime` — shows how long the bot has been running
-- `/server` — displays server information (owner, member count, creation date)
-- `/config` — view or update per-server configuration (prefix, timezone)
+| Command | Description |
+|---------|-------------|
+| `/weather <city>` | Current conditions and forecast for any city |
+| `/server` | Server member count, creation date, and ID |
+| `/config view` | Show current server configuration |
+| `/config set` | Update server timezone or prefix (requires Manage Server) |
+| `/uptime` | How long the bot has been running |
 
 ## Add to your server
 
-Use the Discord Developer Portal to generate an invite link with the `applications.commands` and `bot` scopes.
+Generate an invite link from the [Discord Developer Portal](https://discord.com/developers/applications) with the `bot` and `applications.commands` scopes, or use the **Add to Discord** button at the top of this page.
+
+## Self-hosting
+
+The bot is designed to be self-hosted. See [Requirements](./requirements) and [Local Dev](./local-dev) to run your own instance.

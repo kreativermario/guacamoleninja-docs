@@ -2,9 +2,12 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+const INVITE_URL =
+  'https://discord.com/oauth2/authorize?client_id=1083489015979856026&permissions=66448710&scope=bot+applications.commands';
+
 const config: Config = {
   title: 'guacamoleninja-bot',
-  tagline: 'A Discord bot built with discord.js v14 and TypeScript',
+  tagline: 'A Discord bot for small communities',
   favicon: 'img/favicon.ico',
 
   future: {
@@ -46,14 +49,14 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/mascot.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
     },
     navbar: {
       title: 'guacamoleninja-bot',
       logo: {
-        alt: 'guacamoleninja-bot Logo',
+        alt: 'guacamoleninja shuriken logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -67,15 +70,39 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          href: INVITE_URL,
+          label: 'Add to Discord',
+          position: 'right',
+          className: 'navbar-invite',
+        },
       ],
     },
     footer: {
       style: 'dark',
-      copyright: `Copyright © ${new Date().getFullYear()} guacamoleninja. Built with Docusaurus.`,
+      links: [
+        {
+          title: 'Docs',
+          items: [
+            {label: 'Getting Started', to: '/docs/getting-started/intro'},
+            {label: 'Commands', to: '/docs/commands/weather'},
+            {label: 'Contributing', to: '/docs/contributing/setup'},
+          ],
+        },
+        {
+          title: 'Links',
+          items: [
+            {label: 'Add to Discord', href: INVITE_URL},
+            {label: 'GitHub', href: 'https://github.com/guacamoleninja/guacamoleninja-bot'},
+            {label: 'app.guacamoleninja.com', href: 'https://app.guacamoleninja.com'},
+          ],
+        },
+      ],
+      copyright: `© ${new Date().getFullYear()} guacamoleninja`,
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: prismThemes.vsDark,
     },
   } satisfies Preset.ThemeConfig,
 };
