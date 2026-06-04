@@ -1,135 +1,84 @@
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import styles from './index.module.css';
 
 const INVITE_URL =
   'https://discord.com/oauth2/authorize?client_id=1083489015979856026&permissions=66448710&scope=bot+applications.commands';
 
 const FEATURES = [
-  {
-    icon: '🌤️',
-    name: '/weather',
-    desc: 'Current conditions and forecasts for any city. Powered by Open-Meteo — no API key needed.',
-  },
-  {
-    icon: '🖥️',
-    name: '/server',
-    desc: 'Shows member count, creation date, and server ID at a glance.',
-  },
-  {
-    icon: '⚙️',
-    name: '/config',
-    desc: 'Per-server timezone and prefix settings. Only server managers can change them.',
-  },
-  {
-    icon: '⏱️',
-    name: '/uptime',
-    desc: 'Check how long the bot has been running without a restart.',
-  },
+  { icon: '🌤️', name: '/weather', desc: 'Current conditions for any city via Open-Meteo.' },
+  { icon: '🖥️', name: '/server',  desc: 'Member count, creation date and server ID.' },
+  { icon: '⚙️', name: '/config',  desc: 'Timezone and prefix, per-server. Requires Manage Server.' },
+  { icon: '⏱️', name: '/uptime',  desc: 'Check how long the bot has been running.' },
 ];
 
 const STEPS = [
-  {
-    n: '1',
-    title: 'Add to your server',
-    desc: 'Click the invite button and select your Discord server.',
-  },
-  {
-    n: '2',
-    title: 'Configure (optional)',
-    desc: 'Run /config set timezone Europe/Lisbon to set your server timezone.',
-  },
-  {
-    n: '3',
-    title: 'Use a command',
-    desc: 'Try /weather Lisbon or /server to get started.',
-  },
+  { n: '1', title: 'Invite the bot', desc: 'Click Add to Discord and pick your server.' },
+  { n: '2', title: 'Configure (optional)', desc: 'Run /config set timezone to match your server.' },
+  { n: '3', title: 'Run a command', desc: 'Try /weather Lisbon or /server.' },
 ];
-
-function ShurikenIcon(): ReactNode {
-  return (
-    <svg
-      viewBox="0 0 100 100"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{width: 18, height: 18, display: 'inline-block', verticalAlign: 'middle'}}
-      aria-hidden="true"
-    >
-      <polygon points="50,4 62,38 96,50 62,62 50,96 38,62 4,50 38,38" fill="currentColor" />
-      <circle cx="50" cy="50" r="11" fill="white" fillOpacity="0.2" />
-      <circle cx="50" cy="50" r="5.5" fill="currentColor" />
-    </svg>
-  );
-}
 
 export default function Home(): ReactNode {
   return (
     <Layout
-      title="guacamoleninja-bot — Discord bot for small communities"
-      description="Weather, server info, reminders, and per-server configuration. A Discord bot built with discord.js v14 and TypeScript."
+      title="guacamoleninja-bot"
+      description="A Discord bot for small communities — weather, server info, and per-server config."
     >
-      {/* Hero */}
-      <section className="gn-hero">
-        <div className="gn-hero__content">
-          <div className="gn-hero__badge">
-            <ShurikenIcon /> guacamoleninja&#8209;bot
+      <main className={styles.main}>
+        {/* Hero */}
+        <section className={styles.hero}>
+          <div className={styles.mascotWrap}>
+            <img src="/img/mascot.jpg" alt="guacamoleninja mascot" width={120} height={120} />
           </div>
-          <h1 className="gn-hero__title">
-            A Discord bot for<br />small communities
-          </h1>
-          <p className="gn-hero__sub">
-            Weather forecasts, server tools, and per-server config — all in one lightweight bot.
-            Open source, self-hosted, no locked features.
+          <h1 className={styles.title}>guacamoleninja&#8209;bot</h1>
+          <p className={styles.subtitle}>
+            A Discord bot for small communities.<br />
+            Weather, server tools, and per-server config.
           </p>
-          <div className="gn-hero__actions">
-            <a href={INVITE_URL} target="_blank" rel="noopener noreferrer" className="gn-btn gn-btn--primary">
+          <div className={styles.actions}>
+            <a href={INVITE_URL} target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
               Add to Discord
             </a>
-            <Link to="/docs/getting-started/intro" className="gn-btn gn-btn--outline">
+            <Link to="/docs/getting-started/intro" className={styles.btnOutline}>
               Read the docs →
             </Link>
           </div>
-        </div>
-        <div className="gn-hero__visual">
-          <img src="/img/mascot.jpg" alt="guacamoleninja mascot — astronaut holding avocado" />
-        </div>
-      </section>
+        </section>
 
-      <div className="gn-section-divider" />
+        <hr className={styles.divider} />
 
-      {/* Features */}
-      <section className="gn-features">
-        <h2 className="gn-section-heading">What it does</h2>
-        <div className="gn-grid">
-          {FEATURES.map((f) => (
-            <div key={f.name} className="gn-card">
-              <div className="gn-card__icon">{f.icon}</div>
-              <div className="gn-card__name">{f.name}</div>
-              <div className="gn-card__desc">{f.desc}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div className="gn-section-divider" />
-
-      {/* Quick start */}
-      <section className="gn-steps">
-        <h2 className="gn-section-heading">Get started in 3 steps</h2>
-        {STEPS.map((s) => (
-          <div key={s.n} className="gn-step">
-            <div className="gn-step__num">{s.n}</div>
-            <div>
-              <div className="gn-step__title">{s.title}</div>
-              <div className="gn-step__desc">{s.desc}</div>
-            </div>
+        {/* Features */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>What it does</h2>
+          <div className={styles.grid}>
+            {FEATURES.map((f) => (
+              <div key={f.name} className={styles.card}>
+                <span className={styles.cardIcon}>{f.icon}</span>
+                <code className={styles.cardName}>{f.name}</code>
+                <p className={styles.cardDesc}>{f.desc}</p>
+              </div>
+            ))}
           </div>
-        ))}
-        <div style={{textAlign: 'center', marginTop: '1.75rem'}}>
-          <Link to="/docs/getting-started/intro" style={{color: 'var(--gn-accent)', fontWeight: 600, fontSize: '0.9rem'}}>
-            Full documentation →
-          </Link>
-        </div>
-      </section>
+        </section>
+
+        <hr className={styles.divider} />
+
+        {/* Steps */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Get started</h2>
+          <ol className={styles.steps}>
+            {STEPS.map((s) => (
+              <li key={s.n} className={styles.step}>
+                <strong>{s.title}</strong> — {s.desc}
+              </li>
+            ))}
+          </ol>
+          <p className={styles.docsLink}>
+            <Link to="/docs/getting-started/intro">Full documentation →</Link>
+          </p>
+        </section>
+      </main>
     </Layout>
   );
 }

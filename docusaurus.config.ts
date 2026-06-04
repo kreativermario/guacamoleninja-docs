@@ -66,7 +66,7 @@ const config: Config = {
           label: 'Docs',
         },
         {
-          href: 'https://github.com/guacamoleninja/guacamoleninja-bot',
+          href: 'https://github.com/kreativermario/guacamoleninja-bot',
           label: 'GitHub',
           position: 'right',
         },
@@ -93,8 +93,8 @@ const config: Config = {
           title: 'Links',
           items: [
             {label: 'Add to Discord', href: INVITE_URL},
-            {label: 'GitHub', href: 'https://github.com/guacamoleninja/guacamoleninja-bot'},
-            {label: 'app.guacamoleninja.com', href: 'https://app.guacamoleninja.com'},
+            {label: 'GitHub', href: 'https://github.com/kreativermario/guacamoleninja-bot'},
+            {label: 'Dashboard', href: 'https://app.guacamoleninja.com'},
           ],
         },
       ],
