@@ -1,10 +1,11 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 ---
 
-# Overview
+# Bot API
 
-The bot exposes a small HTTP API used by the [web dashboard](https://app.guacamoleninja.com) to read guild status and manage per-server configuration. It runs as a separate process from the Discord bot, on its own Docker image and port.
+The bot exposes an HTTP API used by the [web dashboard](https://app.guacamoleninja.com) to read guild status and manage per-server configuration. It runs as a separate Docker image from the Discord bot process.
 
 ## Base URL
 
@@ -15,21 +16,21 @@ The bot exposes a small HTTP API used by the [web dashboard](https://app.guacamo
 
 ## Authentication
 
-All endpoints except [`GET /health`](./health) require a `Bearer` token in the `Authorization` header:
+All endpoints except [`GET /health`](./health) require a `Bearer` token:
 
-```
+```http
 Authorization: Bearer <BOT_API_SECRET>
 ```
 
-The secret must match the `BOT_API_SECRET` environment variable set on the API service. Requests with a missing or incorrect token receive a `401 Unauthorized` response.
+The value must match the `BOT_API_SECRET` environment variable on the API service. Missing or incorrect tokens return `401 Unauthorized`.
 
 ## Rate limiting
 
-Requests are rate-limited to **120 per minute per IP address** using an in-memory sliding window. Clients that exceed the limit receive `429 Too Many Requests` with a `Retry-After: 60` header.
+Requests are limited to **120 per minute per IP** using an in-memory sliding window. Clients that exceed the limit receive `429 Too Many Requests` with a `Retry-After: 60` header.
 
 ## Response format
 
-All responses are JSON. Successful responses use `2xx` status codes. Errors follow a consistent shape:
+All responses are JSON. Errors always follow this shape:
 
 ```json
 {
@@ -37,16 +38,31 @@ All responses are JSON. Successful responses use `2xx` status codes. Errors foll
 }
 ```
 
-Every response includes an `X-Request-Id` header (UUID) for tracing.
+Every response includes an `X-Request-Id` header (UUID v4) that can be used for log correlation.
 
 ## Status codes
 
 | Code | Meaning |
 |---|---|
-| `200` | Success |
+| `200` | OK |
 | `400` | Bad request — invalid or missing body fields |
 | `401` | Unauthorized — missing or wrong `BOT_API_SECRET` |
 | `404` | Not found — guild does not exist or bot has left |
-| `429` | Rate limited |
+| `429` | Rate limited — slow down and retry after 60 s |
 | `500` | Internal server error |
-| `503` | Service unavailable — database unreachable (health check only) |
+| `502` | Bad gateway — upstream Discord API error |
+| `503` | Service unavailable — database unreachable |
+
+## Endpoints
+
+| Method | Path | Auth | Description |
+|---|---|---|---|
+| `GET` | [`/health`](./health) | No | Service health and uptime |
+| `GET` | [`/guilds`](./guilds) | Yes | List active guilds |
+| `GET` | [`/guilds/:id`](./guilds) | Yes | Get guild details and config |
+| `PATCH` | [`/guilds/:id/config`](./config) | Yes | Update server configuration |
+| `GET` | [`/guilds/:id/welcome`](./welcome) | Yes | Get welcome message config |
+| `PATCH` | [`/guilds/:id/welcome`](./welcome) | Yes | Update welcome message config |
+| `GET` | [`/guilds/:id/channels`](./channels) | Yes | List text channels (via Discord) |
+| `GET` | [`/guilds/:id/stats`](./stats) | Yes | 30-day command usage stats |
+| `GET` | [`/guilds/:id/audit`](./audit) | Yes | Last 50 audit log entries |

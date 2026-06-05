@@ -79,3 +79,33 @@
   background: #0a0a0a;
   border-top: 1px solid #1a1a1a;
 }
+
+/* HTTP method badges */
+.method {
+  display: inline-block;
+  padding: 0.15em 0.5em;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-family: var(--ifm-font-family-monospace);
+  margin-right: 0.4rem;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+.method-get    { background: #22c55e; color: #fff; }
+.method-patch  { background: #f59e0b; color: #fff; }
+.method-post   { background: #3b82f6; color: #fff; }
+.method-delete { background: #ef4444; color: #fff; }
+
+/* Endpoint anchor heading */
+h2 code {
+  font-size: 0.9em;
+}
+
+/* Tighter table column widths in API reference */
+.api-table td:first-child,
+.api-table th:first-child {
+  white-space: nowrap;
+  width: 1%;
+}

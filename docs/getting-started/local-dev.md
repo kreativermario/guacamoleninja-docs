@@ -52,13 +52,16 @@ The bot and API both wait for the migration service to complete before starting.
 
 ## HTTP API
 
-The API exposes three endpoints, all requiring a `Bearer` token matching `BOT_API_SECRET`:
+The API runs on port `3002`. All endpoints except `/health` require `Authorization: Bearer <BOT_API_SECRET>`. See the [Bot API reference](/docs/api/overview) for full details.
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/health` | Health check — no auth required, returns `{"status":"ok"}` |
-| `GET` | `/guilds` | List all guilds the bot is currently active in |
-| `GET` | `/guilds/:id` | Get guild details and configuration |
-| `PATCH` | `/guilds/:id/config` | Update guild configuration |
-
-The web dashboard calls this API to display bot status and manage per-server settings.
+| Method | Path | Auth | Description |
+|---|---|---|---|
+| `GET` | `/health` | No | Service health check |
+| `GET` | `/guilds` | Yes | List active guilds |
+| `GET` | `/guilds/:id` | Yes | Get guild details and config |
+| `PATCH` | `/guilds/:id/config` | Yes | Update server configuration |
+| `GET` | `/guilds/:id/welcome` | Yes | Get welcome message config |
+| `PATCH` | `/guilds/:id/welcome` | Yes | Update welcome message config |
+| `GET` | `/guilds/:id/channels` | Yes | List text channels (via Discord) |
+| `GET` | `/guilds/:id/stats` | Yes | 30-day command usage stats |
+| `GET` | `/guilds/:id/audit` | Yes | Last 50 audit log entries |

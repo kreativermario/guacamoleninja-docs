@@ -1,22 +1,21 @@
 ---
 sidebar_position: 2
+sidebar_label: Health Check
 ---
 
-# GET /health
+# Health Check
 
-Returns the health status of the API service and its database connection. **No authentication required** — this endpoint is used by Docker and Portainer healthchecks.
+## <span class="method method-get">GET</span> `/health`
 
-## Request
+Returns the health status of the API service and its database connection.
 
-```
-GET /health
-```
+:::info[No authentication required]
+This endpoint is intentionally unauthenticated — it is used by Docker and Portainer healthchecks.
+:::
 
-No headers or body required.
+### Response
 
-## Response
-
-**Healthy — `200 OK`**
+#### `200 OK` — healthy
 
 ```json
 {
@@ -25,7 +24,7 @@ No headers or body required.
 }
 ```
 
-**Unhealthy (database unreachable) — `503 Service Unavailable`**
+#### `503 Service Unavailable` — database unreachable
 
 ```json
 {
@@ -36,5 +35,11 @@ No headers or body required.
 
 | Field | Type | Description |
 |---|---|---|
-| `status` | `"ok"` \| `"error"` | Whether the service and database are healthy |
-| `uptime` | number | Process uptime in seconds |
+| `status` | `"ok"` \| `"error"` | Whether the service and database are reachable |
+| `uptime` | `number` | Process uptime in seconds |
+
+### Example
+
+```bash
+curl https://api.guacamoleninja.com/health
+```

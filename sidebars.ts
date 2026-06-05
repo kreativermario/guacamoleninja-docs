@@ -24,11 +24,16 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Bot API',
+      link: { type: 'doc', id: 'api/overview' },
       items: [
         'api/overview',
         'api/health',
         'api/guilds',
         'api/config',
+        'api/welcome',
+        'api/channels',
+        'api/stats',
+        'api/audit',
       ],
     },
     {

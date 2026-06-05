@@ -1,21 +1,17 @@
 ---
 sidebar_position: 3
+sidebar_label: Guilds
 ---
 
 # Guilds
 
-## GET /guilds
+<h2 id="list-guilds"><span class="method method-get">GET</span> <code>/guilds</code></h2>
 
-Returns the list of guilds where the bot is currently active (i.e. has not left).
+Returns the IDs of all guilds where the bot is currently active (has not left).
 
-### Request
+### Response
 
-```
-GET /guilds
-Authorization: Bearer <BOT_API_SECRET>
-```
-
-### Response — `200 OK`
+#### `200 OK`
 
 ```json
 {
@@ -28,27 +24,31 @@ Authorization: Bearer <BOT_API_SECRET>
 
 | Field | Type | Description |
 |---|---|---|
-| `guilds` | array | Guild objects for servers the bot is active in |
-| `guilds[].id` | string | Discord guild snowflake ID |
+| `guilds` | `object[]` | List of active guild objects |
+| `guilds[].id` | `string` | Discord guild snowflake ID |
+
+### Example
+
+```bash
+curl https://api.guacamoleninja.com/guilds \
+  -H "Authorization: Bearer $BOT_API_SECRET"
+```
 
 ---
 
-## GET /guilds/:id
+<h2 id="get-guild"><span class="method method-get">GET</span> <code>/guilds/:id</code></h2>
 
-Returns full details and configuration for a single guild.
+Returns full details, configuration, and welcome config for a single guild.
 
-### Request
-
-```
-GET /guilds/:id
-Authorization: Bearer <BOT_API_SECRET>
-```
+### Path parameters
 
 | Parameter | Description |
 |---|---|
 | `id` | Discord guild snowflake ID |
 
-### Response — `200 OK`
+### Response
+
+#### `200 OK`
 
 ```json
 {
@@ -64,6 +64,13 @@ Authorization: Bearer <BOT_API_SECRET>
       "timezone": "Europe/Lisbon",
       "disabledCommands": ["weather"],
       "updatedAt": "2025-06-01T12:00:00.000Z"
+    },
+    "welcomeConfig": {
+      "guildId": "1234910949220028456",
+      "enabled": true,
+      "channelId": "8765432109876543210",
+      "message": "Welcome {user} to **{server}**! You are member #{memberCount}.",
+      "updatedAt": "2025-06-01T12:00:00.000Z"
     }
   }
 }
@@ -71,21 +78,33 @@ Authorization: Bearer <BOT_API_SECRET>
 
 | Field | Type | Description |
 |---|---|---|
-| `guild.id` | string | Discord guild snowflake ID |
-| `guild.name` | string | Guild display name |
-| `guild.iconHash` | string \| null | Discord icon hash — construct URL as `https://cdn.discordapp.com/icons/{id}/{hash}.png` |
-| `guild.joinedAt` | string | ISO 8601 timestamp when the bot joined |
-| `guild.leftAt` | null | Always `null` — guilds where the bot has left return `404` |
-| `guild.config` | object \| null | Configuration, or `null` if not yet set (defaults apply) |
-| `guild.config.prefix` | string | Command prefix, default `!` |
-| `guild.config.timezone` | string | IANA timezone name, default `UTC` |
-| `guild.config.disabledCommands` | string[] | Command names that are disabled on this server |
-| `guild.config.updatedAt` | string | ISO 8601 timestamp of last config change |
+| `guild.id` | `string` | Discord guild snowflake ID |
+| `guild.name` | `string` | Guild display name |
+| `guild.iconHash` | `string \| null` | Discord icon hash. Construct the full URL as `https://cdn.discordapp.com/icons/{id}/{hash}.png` |
+| `guild.joinedAt` | `string` | ISO 8601 timestamp when the bot joined |
+| `guild.leftAt` | `null` | Always `null` for active guilds — guilds the bot has left return `404` |
+| `guild.config` | `object \| null` | Server configuration, or `null` if defaults have never been saved |
+| `guild.config.prefix` | `string` | Command prefix (default `!`) |
+| `guild.config.timezone` | `string` | IANA timezone name (default `UTC`) |
+| `guild.config.disabledCommands` | `string[]` | Command names disabled on this server |
+| `guild.config.updatedAt` | `string` | ISO 8601 timestamp of last config update |
+| `guild.welcomeConfig` | `object \| null` | Welcome message configuration, or `null` if never configured |
+| `guild.welcomeConfig.enabled` | `boolean` | Whether welcome messages are active |
+| `guild.welcomeConfig.channelId` | `string` | Channel snowflake ID to post messages in |
+| `guild.welcomeConfig.message` | `string` | Message template (supports `{user}`, `{username}`, `{server}`, `{memberCount}`) |
+| `guild.welcomeConfig.updatedAt` | `string` | ISO 8601 timestamp of last welcome config update |
 
-### Response — `404 Not Found`
+#### `404 Not Found`
 
-Returned when the bot is not in the guild or the guild ID is unknown.
+Returned when the guild ID is unknown or the bot has already left.
 
 ```json
 { "error": "Guild not found" }
+```
+
+### Example
+
+```bash
+curl https://api.guacamoleninja.com/guilds/1234910949220028456 \
+  -H "Authorization: Bearer $BOT_API_SECRET"
 ```
