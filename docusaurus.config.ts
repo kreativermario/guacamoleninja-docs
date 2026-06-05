@@ -53,8 +53,8 @@ const config: Config = {
     navbar: {
       title: 'guacamoleninja-bot',
       logo: {
-        alt: 'guacamoleninja shuriken logo',
-        src: 'img/logo.svg',
+        alt: 'guacamoleninja mascot',
+        src: 'img/mascot.jpg',
       },
       items: [
         {
