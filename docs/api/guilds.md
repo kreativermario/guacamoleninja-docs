@@ -5,7 +5,7 @@ sidebar_label: Guilds
 
 # Guilds
 
-<h2 id="list-guilds"><span class="method method-get">GET</span> <code>/guilds</code></h2>
+## <span class="method method-get">GET</span> `/guilds`
 
 Returns the IDs of all guilds where the bot is currently active (has not left).
 
@@ -36,7 +36,7 @@ curl https://api.guacamoleninja.com/guilds \
 
 ---
 
-<h2 id="get-guild"><span class="method method-get">GET</span> <code>/guilds/:id</code></h2>
+## <span class="method method-get">GET</span> `/guilds/:id`
 
 Returns full details, configuration, and welcome config for a single guild.
 

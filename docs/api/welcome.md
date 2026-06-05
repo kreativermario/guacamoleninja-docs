@@ -13,7 +13,7 @@ Welcome messages require the **Server Members Intent** to be enabled in the [Dis
 
 ---
 
-<h2 id="get-welcome-config"><span class="method method-get">GET</span> <code>/guilds/:id/welcome</code></h2>
+## <span class="method method-get">GET</span> `/guilds/:id/welcome`
 
 Returns the current welcome configuration for a guild.
 
@@ -57,7 +57,7 @@ curl https://api.guacamoleninja.com/guilds/1234910949220028456/welcome \
 
 ---
 
-<h2 id="update-welcome-config"><span class="method method-patch">PATCH</span> <code>/guilds/:id/welcome</code></h2>
+## <span class="method method-patch">PATCH</span> `/guilds/:id/welcome`
 
 Updates welcome message configuration. Only fields included in the body are changed.
 
