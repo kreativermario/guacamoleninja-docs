@@ -77,6 +77,7 @@ const config: Config = {
           items: [
             {label: 'Getting Started', to: '/docs/getting-started/intro'},
             {label: 'Commands', to: '/docs/commands/weather'},
+            {label: 'Bot API', to: '/docs/api/overview'},
             {label: 'Contributing', to: '/docs/contributing/setup'},
           ],
         },

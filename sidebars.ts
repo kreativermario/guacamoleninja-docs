@@ -23,6 +23,16 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Bot API',
+      items: [
+        'api/overview',
+        'api/health',
+        'api/guilds',
+        'api/config',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Contributing',
       items: [
         'contributing/setup',
