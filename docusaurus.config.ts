@@ -2,9 +2,6 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-const INVITE_URL =
-  'https://discord.com/oauth2/authorize?client_id=1083489015979856026&permissions=66448710&scope=bot+applications.commands';
-
 const config: Config = {
   title: 'guacamoleninja-bot',
   tagline: 'A Discord bot for small communities',
@@ -70,12 +67,6 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
-        {
-          href: INVITE_URL,
-          label: 'Add to Discord',
-          position: 'right',
-          className: 'navbar-invite',
-        },
       ],
     },
     footer: {
@@ -92,7 +83,6 @@ const config: Config = {
         {
           title: 'Links',
           items: [
-            {label: 'Add to Discord', href: INVITE_URL},
             {label: 'GitHub', href: 'https://github.com/kreativermario/guacamoleninja-bot'},
             {label: 'Dashboard', href: 'https://app.guacamoleninja.com'},
           ],

@@ -18,7 +18,7 @@ guacamoleninja-bot is a Discord utility bot for small communities, built with [d
 
 ## Add to your server
 
-Generate an invite link from the [Discord Developer Portal](https://discord.com/developers/applications) with the `bot` and `applications.commands` scopes, or use the **Add to Discord** button at the top of this page.
+Generate an invite link from the [Discord Developer Portal](https://discord.com/developers/applications) with the `bot` and `applications.commands` scopes.
 
 ## Self-hosting
 

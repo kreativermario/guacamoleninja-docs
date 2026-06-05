@@ -3,9 +3,6 @@ import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import styles from './index.module.css';
 
-const INVITE_URL =
-  'https://discord.com/oauth2/authorize?client_id=1083489015979856026&permissions=66448710&scope=bot+applications.commands';
-
 const FEATURES = [
   { icon: '🌤️', name: '/weather', desc: 'Current conditions for any city via Open-Meteo.' },
   { icon: '🖥️', name: '/server',  desc: 'Member count, creation date and server ID.' },
@@ -14,7 +11,7 @@ const FEATURES = [
 ];
 
 const STEPS = [
-  { n: '1', title: 'Invite the bot', desc: 'Click Add to Discord and pick your server.' },
+  { n: '1', title: 'Invite the bot', desc: 'Generate an invite from the Discord Developer Portal and add it to your server.' },
   { n: '2', title: 'Configure (optional)', desc: 'Run /config set timezone to match your server.' },
   { n: '3', title: 'Run a command', desc: 'Try /weather Lisbon or /server.' },
 ];
@@ -37,11 +34,11 @@ export default function Home(): ReactNode {
             Weather, server tools, and per-server config.
           </p>
           <div className={styles.actions}>
-            <a href={INVITE_URL} target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
-              Add to Discord
-            </a>
-            <Link to="/docs/getting-started/intro" className={styles.btnOutline}>
+            <Link to="/docs/getting-started/intro" className={styles.btnPrimary}>
               Read the docs →
+            </Link>
+            <Link to="/docs/getting-started/requirements" className={styles.btnOutline}>
+              Self-hosting →
             </Link>
           </div>
         </section>

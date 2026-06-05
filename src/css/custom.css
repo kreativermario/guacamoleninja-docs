@@ -57,25 +57,6 @@
   letter-spacing: -0.02em;
 }
 
-/* Invite button in navbar */
-.navbar__link.navbar-invite {
-  background: var(--ifm-color-primary);
-  color: #fff !important;
-  padding: 0.3rem 0.85rem;
-  border-radius: 7px;
-  font-weight: 600;
-  font-size: 0.82rem;
-}
-
-[data-theme='dark'] .navbar__link.navbar-invite {
-  background: var(--ifm-color-primary);
-}
-
-.navbar__link.navbar-invite:hover {
-  background: var(--ifm-color-primary-dark);
-  color: #fff !important;
-}
-
 /* Sidebar active item */
 .menu__link--active:not(.menu__link--sublist) {
   border-left: 2px solid var(--ifm-color-primary);
