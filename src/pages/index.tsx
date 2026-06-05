@@ -4,10 +4,45 @@ import Layout from '@theme/Layout';
 import styles from './index.module.css';
 
 const FEATURES = [
-  { icon: '🌤️', name: '/weather', desc: 'Current conditions for any city via Open-Meteo.' },
-  { icon: '🖥️', name: '/server',  desc: 'Member count, creation date and server ID.' },
-  { icon: '⚙️', name: '/config',  desc: 'Timezone and prefix, per-server. Requires Manage Server.' },
-  { icon: '⏱️', name: '/uptime',  desc: 'Check how long the bot has been running.' },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+      </svg>
+    ),
+    name: '/weather',
+    desc: 'Current conditions for any city via Open-Meteo.',
+  },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <path d="M8 21h8M12 17v4"/>
+      </svg>
+    ),
+    name: '/server',
+    desc: 'Member count, creation date and server ID.',
+  },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    ),
+    name: '/config',
+    desc: 'Timezone and prefix, per-server. Requires Manage Server.',
+  },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+      </svg>
+    ),
+    name: '/uptime',
+    desc: 'Check how long the bot has been running.',
+  },
 ];
 
 const STEPS = [
@@ -26,7 +61,7 @@ export default function Home(): ReactNode {
         {/* Hero */}
         <section className={styles.hero}>
           <div className={styles.mascotWrap}>
-            <img src="/img/mascot.jpg" alt="guacamoleninja mascot" width={120} height={120} />
+            <img src="/img/mascot.jpg" alt="guacamoleninja mascot" width={96} height={96} />
           </div>
           <h1 className={styles.title}>guacamoleninja&#8209;bot</h1>
           <p className={styles.subtitle}>
@@ -47,11 +82,11 @@ export default function Home(): ReactNode {
 
         {/* Features */}
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>What it does</h2>
+          <p className={styles.sectionLabel}>What it does</p>
           <div className={styles.grid}>
             {FEATURES.map((f) => (
               <div key={f.name} className={styles.card}>
-                <span className={styles.cardIcon}>{f.icon}</span>
+                <div className={styles.cardIconWrap}>{f.icon}</div>
                 <code className={styles.cardName}>{f.name}</code>
                 <p className={styles.cardDesc}>{f.desc}</p>
               </div>
@@ -63,14 +98,18 @@ export default function Home(): ReactNode {
 
         {/* Steps */}
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Get started</h2>
-          <ol className={styles.steps}>
+          <p className={styles.sectionLabel}>Get started in 3 steps</p>
+          <div className={styles.steps}>
             {STEPS.map((s) => (
-              <li key={s.n} className={styles.step}>
-                <strong>{s.title}</strong> — {s.desc}
-              </li>
+              <div key={s.n} className={styles.step}>
+                <div className={styles.stepNum}>{s.n}</div>
+                <div>
+                  <div className={styles.stepTitle}>{s.title}</div>
+                  <div className={styles.stepDesc}>{s.desc}</div>
+                </div>
+              </div>
             ))}
-          </ol>
+          </div>
           <p className={styles.docsLink}>
             <Link to="/docs/getting-started/intro">Full documentation →</Link>
           </p>
