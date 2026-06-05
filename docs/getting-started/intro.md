@@ -10,10 +10,12 @@ guacamoleninja-bot is a Discord utility bot for small communities, built with [d
 
 | Command | Description |
 |---------|-------------|
-| `/weather <city>` | Current conditions and forecast for any city |
+| `/weather <city>` | Current conditions for any city |
 | `/server` | Server member count, creation date, and ID |
 | `/config view` | Show current server configuration |
 | `/config set` | Update server timezone or prefix (requires Manage Server) |
+| `/config commands list` | Show which commands are enabled or disabled |
+| `/config commands toggle` | Enable or disable a command (requires Manage Server) |
 | `/uptime` | How long the bot has been running |
 
 ## Add to your server

@@ -26,13 +26,31 @@ sidebar_position: 1
 
 ```
 src/
-├── commands/       # Slash command definitions and handlers
-├── db/             # Prisma client and database helpers
-├── client.ts       # Discord.js client setup
-├── index.ts        # Bot entry point and event handlers
-├── register-commands.ts  # Slash command registration
-└── start.ts        # Startup: db push → import index
+├── api/
+│   ├── main.ts             # API entry point (separate process/image)
+│   └── server.ts           # HTTP server, routing, auth, rate limiting
+├── commands/               # Slash command definitions and handlers
+├── db/
+│   ├── client.ts           # Prisma singleton
+│   └── guild.ts            # Guild and config database helpers
+├── client.ts               # Discord.js client setup
+├── db-migrate.ts           # Standalone Prisma db push (run once on deploy)
+├── index.ts                # Bot entry point and event handlers
+├── logger.ts               # Structured JSON logger
+└── register-commands.ts    # Slash command registration
 ```
+
+The bot and API run as **separate processes** in separate Docker images. The bot image handles Discord events; the API image serves HTTP requests from the web dashboard. Both share the same PostgreSQL database.
+
+## Logging
+
+All structured logs are written as JSON lines to stdout (info/warn/debug) or stderr (error):
+
+```json
+{"ts":"2025-01-01T00:00:00.000Z","level":"info","ctx":"cmd","msg":"executed","meta":{"command":"weather","userId":"123","guildId":"456","ms":42}}
+```
+
+Fields: `ts`, `level`, `ctx` (subsystem), `msg`, `meta` (optional key/value pairs).
 
 ## Making changes
 
