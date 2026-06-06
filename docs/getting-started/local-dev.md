@@ -10,33 +10,12 @@ Everything you need to run guacamoleninja on your own infrastructure — locally
 
 ## Architecture
 
-guacamoleninja is two independent services that share no database:
+guacamoleninja is composed of two independent components:
 
-```
-Browser
-  │
-  ▼
-Cloudflare CDN
-  │
-  ▼
-guacamoleninja-web  (Next.js 16, port 3000)
-  │   └─── Auth DB (PostgreSQL) ── NextAuth sessions, OAuth accounts
-  │
-  │  HTTP  Bearer token
-  ▼
-guacamoleninja-bot API  (Node.js, port 3002)
-  │   └─── Bot DB (PostgreSQL) ── guilds, config, welcome, usage, audit
-  │
-  ▼
-Discord Gateway  (discord.js v14)
-```
+- **guacamoleninja-web** — the dashboard and OAuth flow
+- **guacamoleninja-bot** — the Discord bot and its HTTP API
 
-**Key points**
-
-- The web app **never touches the bot database directly** — all bot state goes through the HTTP API.
-- Each service has its own PostgreSQL database with its own migrations.
-- The HTTP API uses a shared `BOT_API_SECRET` bearer token for authentication.
-- Cloudflare sits in front of the web app in production. The bot API is internal-only.
+The components communicate over a secured HTTP API using a shared bearer token. Each has its own PostgreSQL database — they share no data directly.
 
 ---
 
@@ -314,21 +293,9 @@ Both production images use **distroless** — no shell, no package manager, runs
 
 ## Production deployment
 
-Production uses pre-built images from Harbor and is orchestrated via Portainer stacks. See the deploy workflow at `.github/workflows/deploy.yml` for the full pipeline.
+Both repos include a `Dockerfile` and `docker/docker-compose.prod.yml` ready for production use. The production compose file uses image references instead of build contexts — build your images, push them to a registry of your choice, and set the `WEB_IMAGE` / `BOT_IMAGE` / `BOT_API_IMAGE` environment variables accordingly.
 
-The production compose (`docker/docker-compose.prod.yml`) uses image references instead of build contexts:
-
-```yaml
-services:
-  web:
-    image: ${WEB_IMAGE}          # e.g. registry.example.com/guacamoleninja/guacamoleninja-web:abc1234
-    environment:
-      NODE_ENV: production
-      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
-      # ... other env vars injected by the deploy workflow from HCP Vault
-```
-
-Secrets are pulled from **HCP Vault** at deploy time — never stored in the repository.
+Configure your environment variables for your infrastructure and bring your own secrets management.
 
 ---
 

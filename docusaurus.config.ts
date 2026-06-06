@@ -74,27 +74,11 @@ const config: Config = {
           label: 'Docs',
         },
         {
-          to: '/docs/commands/weather',
-          position: 'left',
-          label: 'Commands',
-        },
-        {
-          to: '/docs/api/overview',
-          position: 'left',
-          label: 'API',
-        },
-        {
           href: 'https://github.com/kreativermario/guacamoleninja-bot',
           label: 'GitHub',
           position: 'right',
           className: 'navbar-github-link',
           'aria-label': 'GitHub',
-        },
-        {
-          href: 'https://app.guacamoleninja.com',
-          label: 'Open App',
-          position: 'right',
-          className: 'navbar-app-link',
         },
       ],
     },

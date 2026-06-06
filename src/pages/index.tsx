@@ -25,7 +25,7 @@ const QUICK_LINKS = [
   {
     icon: '🛠',
     title: 'Self-hosting',
-    desc: 'Run your own instance with Docker, Postgres, and HCP Vault.',
+    desc: 'Run your own instance with Docker and Docker Compose.',
     to: '/docs/getting-started/requirements',
   },
 ];

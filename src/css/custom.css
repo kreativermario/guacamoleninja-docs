@@ -12,6 +12,11 @@
   --ifm-color-primary-lighter: #568f67;
   --ifm-color-primary-lightest:#62a175;
 
+  /* Light mode surfaces — ensures cards have visible background */
+  --ifm-background-surface-color: #f3f4f6;
+  --ifm-color-emphasis-200:        rgba(0, 0, 0, 0.08);
+  --ifm-color-emphasis-700:        #6b7280;
+
   --ifm-code-font-size: 93%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.08);
 }
@@ -87,31 +92,29 @@
   letter-spacing: -0.03em;
 }
 
-/* Nav links */
+/* Nav links — muted, matching web app style */
 .navbar__link {
   font-size: 0.95rem;
   font-weight: 500;
+  color: #8e9297 !important;
+  transition: color 150ms;
+}
+.navbar__link:hover,
+.navbar__link--active {
+  color: #f2f3f5 !important;
+}
+[data-theme='light'] .navbar__link {
+  color: #9ca3af !important;
+}
+[data-theme='light'] .navbar__link:hover,
+[data-theme='light'] .navbar__link--active {
+  color: #111827 !important;
 }
 
-/* "Open App" button */
-.navbar-app-link {
-  background: #5865f2;
-  color: #fff !important;
-  padding: 0.45rem 1rem;
-  border-radius: 7px;
-  font-size: 0.875rem;
-  font-weight: 700;
-  transition: background 150ms;
-  margin-left: 0.25rem;
-}
-.navbar-app-link:hover {
-  background: #4752c4 !important;
-  color: #fff !important;
-}
-
-/* GitHub icon link — icon only on desktop, label visible on mobile */
+/* GitHub icon link — icon only on desktop, label and external icon hidden */
 .navbar-github-link .navbar__link-label,
-.navbar-github-link span {
+.navbar-github-link span,
+.navbar-github-link svg {
   display: none;
 }
 
@@ -133,14 +136,7 @@
 .navbar-sidebar .navbar-github-link::before { display: none; }
 .navbar-sidebar .navbar-github-link .navbar__link-label,
 .navbar-sidebar .navbar-github-link span { display: inline; }
-
-/* "Open App" button in mobile dropdown — full-width look */
-.navbar-sidebar .navbar-app-link {
-  display: block;
-  margin: 0.5rem 0 0;
-  text-align: center;
-  padding: 0.6rem 1rem;
-}
+.navbar-sidebar .navbar-github-link svg { display: none; }
 
 /* ── Sidebar ───────────────────────────────────────── */
 [data-theme='dark'] .theme-doc-sidebar-container {
