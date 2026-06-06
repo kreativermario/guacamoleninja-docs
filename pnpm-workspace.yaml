@@ -4,6 +4,8 @@ packages:
 allowBuilds:
   '@swc/core': true
   core-js: true
+minimumReleaseAgeExclude:
+  - '@types/react@19.2.17'
 onlyBuiltDependencies:
   - '@swc/core'
   - core-js
