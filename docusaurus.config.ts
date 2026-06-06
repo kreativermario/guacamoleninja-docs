@@ -85,6 +85,7 @@ const config: Config = {
         },
         {
           href: 'https://github.com/kreativermario/guacamoleninja-bot',
+          label: 'GitHub',
           position: 'right',
           className: 'navbar-github-link',
           'aria-label': 'GitHub',

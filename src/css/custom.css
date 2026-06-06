@@ -56,12 +56,13 @@
 .navbar {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   --ifm-navbar-height: 68px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 [data-theme='dark'] .navbar {
   box-shadow: none;
+  border-bottom-color: rgba(255, 255, 255, 0.07);
 }
 
 /* Logo — circular to match the web app */
@@ -69,9 +70,13 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(0, 0, 0, 0.12);
   overflow: hidden;
   flex-shrink: 0;
+}
+
+[data-theme='dark'] .navbar__logo {
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 /* Brand name — larger and heavier to match web */
@@ -104,7 +109,12 @@
   color: #fff !important;
 }
 
-/* GitHub icon link */
+/* GitHub icon link — icon only on desktop, label visible on mobile */
+.navbar-github-link .navbar__link-label,
+.navbar-github-link span {
+  display: none;
+}
+
 .navbar-github-link::before {
   content: '';
   display: block;
@@ -117,6 +127,19 @@
 .navbar-github-link:hover::before { opacity: 1; }
 [data-theme='light'] .navbar-github-link::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23374151' d='M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z'/%3E%3C/svg%3E");
+}
+
+/* GitHub link in mobile dropdown — show label, hide icon */
+.navbar-sidebar .navbar-github-link::before { display: none; }
+.navbar-sidebar .navbar-github-link .navbar__link-label,
+.navbar-sidebar .navbar-github-link span { display: inline; }
+
+/* "Open App" button in mobile dropdown — full-width look */
+.navbar-sidebar .navbar-app-link {
+  display: block;
+  margin: 0.5rem 0 0;
+  text-align: center;
+  padding: 0.6rem 1rem;
 }
 
 /* ── Sidebar ───────────────────────────────────────── */
@@ -285,4 +308,88 @@ h2 code { font-size: 0.9em; }
 .api-table th:first-child {
   white-space: nowrap;
   width: 1%;
+}
+
+/* ── Light mode overrides ───────────────────────────── */
+[data-theme='light'] .navbar {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme='light'] .navbar__title {
+  color: #111827;
+}
+
+[data-theme='light'] .navbar__link {
+  color: #374151;
+}
+[data-theme='light'] .navbar__link:hover,
+[data-theme='light'] .navbar__link--active {
+  color: var(--ifm-color-primary);
+}
+
+[data-theme='light'] .theme-doc-sidebar-container {
+  background: #f9fafb;
+  border-right: 1px solid rgba(0, 0, 0, 0.07) !important;
+}
+
+[data-theme='light'] .menu {
+  background: #f9fafb;
+}
+
+[data-theme='light'] .menu__link {
+  color: #374151;
+}
+[data-theme='light'] .menu__link:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: #111827;
+}
+[data-theme='light'] .menu__link--active:not(.menu__link--sublist) {
+  color: var(--ifm-color-primary-dark);
+  background: rgba(74, 124, 89, 0.08);
+}
+
+[data-theme='light'] .table-of-contents {
+  border-left-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] article p,
+[data-theme='light'] article li {
+  color: #374151;
+  line-height: 1.75;
+}
+
+[data-theme='light'] article h1,
+[data-theme='light'] article h2,
+[data-theme='light'] article h3,
+[data-theme='light'] article h4 {
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.025em;
+  color: #111827;
+}
+
+[data-theme='light'] article h2 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 0.5rem;
+}
+
+[data-theme='light'] div[class*='codeBlockContainer'] {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+[data-theme='light'] div[class*='codeBlockTitle'] {
+  border-radius: 12px 12px 0 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.72rem;
+  color: #6b7280;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='light'] .footer__link-item {
+  color: #6b7280;
+  font-size: 0.925rem;
+  transition: color 150ms;
+}
+[data-theme='light'] .footer__link-item:hover {
+  color: #111827;
 }
