@@ -2,7 +2,7 @@ name: Deploy (Portainer — disabled)
 
 # Deployment is currently handled by Cloudflare Pages (free tier, fully static output).
 # Cloudflare Pages auto-deploys from the main branch via its GitHub integration.
-# Build command: pnpm build  |  Output directory: build
+# Build command: pnpm run build  |  Output directory: build
 #
 # To re-enable Portainer/Docker deployment:
 #   1. Restore the push trigger below
