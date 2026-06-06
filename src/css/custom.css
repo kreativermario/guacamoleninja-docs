@@ -1,86 +1,248 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
+/* ── Design tokens ────────────────────────────────── */
 :root {
-  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
-  --ifm-heading-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-base:    'Open Sans', system-ui, sans-serif;
+  --ifm-heading-font-family: 'Inter', system-ui, sans-serif;
 
-  --ifm-color-primary: #4a7c59;
-  --ifm-color-primary-dark: #426e4f;
-  --ifm-color-primary-darker: #3e694b;
+  /* Green primary — light mode */
+  --ifm-color-primary:         #4a7c59;
+  --ifm-color-primary-dark:    #426e4f;
+  --ifm-color-primary-darker:  #3e694b;
   --ifm-color-primary-darkest: #33573d;
-  --ifm-color-primary-light: #528a63;
+  --ifm-color-primary-light:   #528a63;
   --ifm-color-primary-lighter: #568f67;
-  --ifm-color-primary-lightest: #62a175;
+  --ifm-color-primary-lightest:#62a175;
 
   --ifm-code-font-size: 93%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.08);
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #78a86a;
-  --ifm-color-primary-dark: #6a9a5c;
-  --ifm-color-primary-darker: #649257;
+  /* Green primary */
+  --ifm-color-primary:         #78a86a;
+  --ifm-color-primary-dark:    #6a9a5c;
+  --ifm-color-primary-darker:  #649257;
   --ifm-color-primary-darkest: #527847;
-  --ifm-color-primary-light: #86b678;
+  --ifm-color-primary-light:   #86b678;
   --ifm-color-primary-lighter: #8cbb7e;
-  --ifm-color-primary-lightest: #a0c995;
+  --ifm-color-primary-lightest:#a0c995;
 
-  --ifm-background-color: #0f0f0f;
-  --ifm-background-surface-color: #161616;
-  --ifm-navbar-background-color: rgba(15, 15, 15, 0.85);
-  --ifm-footer-background-color: #0a0a0a;
-  --ifm-toc-border-color: #222;
-  --ifm-color-emphasis-200: #222;
-  --ifm-color-emphasis-300: #333;
+  /* Backgrounds — matching web palette */
+  --ifm-background-color:         #1e2030;
+  --ifm-background-surface-color: #252839;
+  --ifm-navbar-background-color:  rgba(30, 32, 48, 0.95);
+  --ifm-footer-background-color:  #191c2e;
+
+  /* Borders */
+  --ifm-toc-border-color:      rgba(255, 255, 255, 0.07);
+  --ifm-color-emphasis-100:    rgba(255, 255, 255, 0.04);
+  --ifm-color-emphasis-200:    rgba(255, 255, 255, 0.07);
+  --ifm-color-emphasis-300:    rgba(255, 255, 255, 0.12);
+  --ifm-color-emphasis-400:    rgba(255, 255, 255, 0.18);
+  --ifm-color-emphasis-600:    #8e9297;
+  --ifm-color-emphasis-700:    #b9bbbe;
+  --ifm-color-emphasis-800:    #dcddde;
+  --ifm-color-emphasis-900:    #f2f3f5;
+
+  /* Sidebar */
+  --ifm-menu-color:              #8e9297;
+  --ifm-menu-color-active:       #f2f3f5;
+  --ifm-menu-color-background-active: rgba(120, 168, 106, 0.08);
+  --ifm-menu-color-background-hover:  rgba(255, 255, 255, 0.03);
 
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.05);
 }
 
-/* Navbar */
+/* ── Navbar ───────────────────────────────────────── */
 .navbar {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  --ifm-navbar-height: 68px;
 }
 
 [data-theme='dark'] .navbar {
-  border-bottom: 1px solid #1e1e1e;
   box-shadow: none;
 }
 
+/* Logo — circular to match the web app */
 .navbar__logo {
-  height: 26px;
-  width: 26px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
+/* Brand name — larger and heavier to match web */
 .navbar__title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+/* Nav links */
+.navbar__link {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* "Open App" button */
+.navbar-app-link {
+  background: #5865f2;
+  color: #fff !important;
+  padding: 0.45rem 1rem;
+  border-radius: 7px;
+  font-size: 0.875rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  transition: background 150ms;
+  margin-left: 0.25rem;
+}
+.navbar-app-link:hover {
+  background: #4752c4 !important;
+  color: #fff !important;
 }
 
-/* Sidebar active item */
+/* GitHub icon link */
+.navbar-github-link::before {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 22px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23b9bbbe' d='M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z'/%3E%3C/svg%3E") center/contain no-repeat;
+  opacity: 0.8;
+  transition: opacity 150ms;
+}
+.navbar-github-link:hover::before { opacity: 1; }
+[data-theme='light'] .navbar-github-link::before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23374151' d='M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z'/%3E%3C/svg%3E");
+}
+
+/* ── Sidebar ───────────────────────────────────────── */
+[data-theme='dark'] .theme-doc-sidebar-container {
+  background: #191c2e;
+  border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+[data-theme='dark'] .menu {
+  background: #191c2e;
+}
+
 .menu__link--active:not(.menu__link--sublist) {
-  border-left: 2px solid var(--ifm-color-primary);
-  padding-left: calc(var(--ifm-menu-link-padding-horizontal) - 2px);
+  border-left: 2.5px solid var(--ifm-color-primary);
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) - 2.5px);
+  font-weight: 600;
 }
 
-/* Code blocks */
+.menu__caret::before,
+.menu__link--sublist-caret::after {
+  filter: none;
+}
+
+/* Sidebar category headings */
+[data-theme='dark'] .menu__list-item-collapsible:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ── TOC ───────────────────────────────────────────── */
+[data-theme='dark'] .table-of-contents {
+  border-left-color: rgba(255, 255, 255, 0.07);
+}
+
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary) !important;
+  font-weight: 600;
+}
+
+/* ── Code blocks ───────────────────────────────────── */
 [data-theme='dark'] div[class*='codeBlockContainer'] {
-  background: #141414;
-  border: 1px solid #242424;
-  border-radius: 10px;
+  background: #161825;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
 }
 
 [data-theme='dark'] .prism-code {
-  background: #141414 !important;
+  background: #161825 !important;
 }
 
-/* Footer */
+[data-theme='dark'] div[class*='codeBlockTitle'] {
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px 12px 0 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.72rem;
+  color: #8e9297;
+}
+
+/* ── Footer ───────────────────────────────────────── */
 [data-theme='dark'] .footer {
-  background: #0a0a0a;
-  border-top: 1px solid #1a1a1a;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-/* HTTP method badges */
+.footer__logo {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50%;
+  margin-bottom: 0.875rem;
+}
+
+.footer__title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: #f2f3f5 !important;
+  letter-spacing: -0.01em;
+}
+
+[data-theme='dark'] .footer__link-item {
+  color: #72767d;
+  font-size: 0.925rem;
+  transition: color 150ms;
+}
+
+[data-theme='dark'] .footer__link-item:hover {
+  color: #f2f3f5;
+}
+
+[data-theme='dark'] .footer__copyright {
+  color: #8e9297;
+  font-size: 0.875rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* ── Content typography ────────────────────────────── */
+[data-theme='dark'] article p,
+[data-theme='dark'] article li {
+  font-family: 'Open Sans', system-ui, sans-serif;
+  line-height: 1.75;
+  color: #b9bbbe;
+}
+
+[data-theme='dark'] article h1,
+[data-theme='dark'] article h2,
+[data-theme='dark'] article h3,
+[data-theme='dark'] article h4 {
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+[data-theme='dark'] article h1 { font-weight: 800; }
+[data-theme='dark'] article h2 {
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding-bottom: 0.5rem;
+}
+
+/* Admonitions */
+[data-theme='dark'] .alert {
+  border-radius: 10px;
+  border-width: 1px;
+}
+
+/* ── HTTP method badges ─────────────────────────────── */
 .method {
   display: inline-block;
   padding: 0.15em 0.5em;
@@ -98,12 +260,9 @@
 .method-post   { background: #3b82f6; color: #fff; }
 .method-delete { background: #ef4444; color: #fff; }
 
-/* Endpoint anchor heading */
-h2 code {
-  font-size: 0.9em;
-}
+/* ── API table ─────────────────────────────────────── */
+h2 code { font-size: 0.9em; }
 
-/* Tighter table column widths in API reference */
 .api-table td:first-child,
 .api-table th:first-child {
   white-space: nowrap;
