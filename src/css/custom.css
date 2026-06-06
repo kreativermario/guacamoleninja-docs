@@ -135,9 +135,18 @@
   font-weight: 600;
 }
 
-.menu__caret::before,
-.menu__link--sublist-caret::after {
-  filter: none;
+/* Sidebar arrows — always white in dark mode, no green on hover */
+[data-theme='dark'] .menu__caret::before,
+[data-theme='dark'] .menu__link--sublist-caret::after {
+  filter: brightness(0) invert(1) !important;
+  opacity: 0.7;
+}
+[data-theme='dark'] .menu__caret:hover::before,
+[data-theme='dark'] .menu__link--sublist-caret:hover::after,
+[data-theme='dark'] .menu__link--active .menu__caret::before,
+[data-theme='dark'] .menu__link--active .menu__link--sublist-caret::after {
+  filter: brightness(0) invert(1) !important;
+  opacity: 1;
 }
 
 /* Sidebar category headings */
