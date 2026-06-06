@@ -14,14 +14,16 @@ pnpm typecheck    # type-check without emitting
 
 ## Deployment
 
-Auto-deploys on push to `main` via Cloudflare Pages GitHub integration — no `wrangler.toml` needed.
+Deployed as a **CF Worker with static assets** via Cloudflare Workers Builds (not CF Pages).
 
-CF Pages project settings:
+`wrangler.toml` configures the worker name and points `[assets]` at `./build`.
+
+CF Workers Builds dashboard settings:
 - Build command: `pnpm run build`
-- Output directory: `build`
+- Deploy command: `npx wrangler deploy`
 - `NODE_VERSION=24` env var required
 
-`CLOUDFLARE_API_TOKEN` env var must have **Cloudflare Pages: Edit** permission scope (account role alone is not enough).
+`CLOUDFLARE_API_TOKEN` env var must have **Workers: Edit** permission scope — NOT Cloudflare Pages: Edit (different product).
 
 ## Sidebar Structure
 
@@ -29,9 +31,16 @@ Getting Started → Commands → Bot API (Overview → Health → Guilds → Gui
 
 ## Design
 
-Discord-dark theme matching the web app. All overrides live in `src/css/custom.css` (overrides `--ifm-*` variables):
-- Inter for headings, Open Sans for body
-- Dark default, theme-switchable
+Discord-dark theme mirroring the web app. All overrides live in `src/css/custom.css` via `--ifm-*` variable overrides.
+
+**Palette:**
+- Background: `--bg: #1e2030`, `--bg-feat: #191c2e`, `--bg-card: #252839`
+- Green accent: `--primary: #78a86a`, `--primary-dk: #4a7c59`
+- Discord blue (CTAs): `--discord: #5865f2`
+
+**Typography:** Inter for headings, Open Sans for body
+
+Dark default, theme-switchable. Full spec: `docs/design-guidelines.md` in the web repo (`guacamoleninja-web`).
 
 ## Gotchas
 
