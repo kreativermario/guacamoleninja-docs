@@ -3,7 +3,7 @@
   background: linear-gradient(180deg, #191c2e 0%, #1e2030 80%);
   padding: 6rem 2rem 5rem;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .mascotWrap {
@@ -24,6 +24,7 @@
   height: 100%;
 }
 
+/* Hero text always on dark background — white is correct here */
 .title {
   font-family: 'Inter', system-ui, sans-serif;
   font-size: clamp(2.25rem, 5vw, 3.5rem);
@@ -38,7 +39,7 @@
   font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #8e9297;
+  color: rgba(255, 255, 255, 0.55);
   margin: 0 auto 2.5rem;
   max-width: 500px;
 }
@@ -50,6 +51,7 @@
   flex-wrap: wrap;
 }
 
+/* Buttons are always on the dark hero — can use fixed colors */
 .btnPrimary {
   display: inline-flex;
   align-items: center;
@@ -74,9 +76,9 @@
 .btnOutline {
   display: inline-flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.1);
   color: #f2f3f5 !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 0.8rem 1.625rem;
   border-radius: 9px;
   font-family: 'Inter', system-ui, sans-serif;
@@ -86,7 +88,7 @@
   transition: background 150ms, transform 150ms;
 }
 .btnOutline:hover {
-  background: rgba(255, 255, 255, 0.11) !important;
+  background: rgba(255, 255, 255, 0.18) !important;
   color: #f2f3f5 !important;
   transform: translateY(-1px);
 }
@@ -98,7 +100,7 @@
   padding: 4rem 2rem 6rem;
 }
 
-/* ── Quick nav cards ──────────────────────────────── */
+/* ── Quick nav cards — use Docusaurus vars so light/dark both work ── */
 .quickGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -107,8 +109,8 @@
 }
 
 .quickCard {
-  background: #252839;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: 14px;
   padding: 1.5rem;
   text-decoration: none !important;
@@ -117,7 +119,7 @@
   transition: border-color 200ms, transform 200ms;
 }
 .quickCard:hover {
-  border-color: rgba(120, 168, 106, 0.35);
+  border-color: var(--ifm-color-primary);
   transform: translateY(-2px);
 }
 
@@ -125,9 +127,9 @@
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  background: rgba(120, 168, 106, 0.1);
-  border: 1px solid rgba(120, 168, 106, 0.2);
-  color: #78a86a;
+  background: color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 25%, transparent);
+  color: var(--ifm-color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,14 +142,14 @@
   font-size: 0.9375rem;
   font-weight: 700;
   margin-bottom: 0.35rem;
-  color: #f2f3f5;
+  color: var(--ifm-font-color-base);
   letter-spacing: -0.01em;
 }
 
 .quickCardDesc {
   font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.8125rem;
-  color: #8e9297;
+  color: var(--ifm-color-emphasis-700);
   line-height: 1.55;
   margin: 0;
 }
@@ -159,7 +161,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #78a86a;
+  color: var(--ifm-color-primary);
   margin-bottom: 0.75rem;
 }
 
@@ -169,13 +171,13 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-bottom: 0.625rem;
-  color: #f2f3f5;
+  color: var(--ifm-font-color-base);
 }
 
 .sectionSub {
   font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.9375rem;
-  color: #8e9297;
+  color: var(--ifm-color-emphasis-700);
   line-height: 1.65;
   margin-bottom: 2rem;
 }
@@ -185,28 +187,34 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--ifm-color-emphasis-200);
   border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--ifm-color-emphasis-200);
   margin-bottom: 4.5rem;
 }
 
 .cmdCell {
-  background: #252839;
+  background: var(--ifm-background-surface-color);
   padding: 1.375rem 1.5rem;
   display: flex;
   gap: 0.875rem;
   align-items: flex-start;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: background 150ms;
+}
+.cmdCell:hover {
+  background: color-mix(in srgb, var(--ifm-color-primary) 6%, var(--ifm-background-surface-color));
 }
 
 .cmdCellIcon {
   width: 38px;
   height: 38px;
   border-radius: 9px;
-  background: rgba(120, 168, 106, 0.1);
-  border: 1px solid rgba(120, 168, 106, 0.15);
-  color: #78a86a;
+  background: color-mix(in srgb, var(--ifm-color-primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 20%, transparent);
+  color: var(--ifm-color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,7 +226,7 @@
   font-weight: 700;
   font-size: 0.875rem;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  color: #78a86a;
+  color: var(--ifm-color-primary);
   margin-bottom: 0.3rem;
   background: none;
   border: none;
@@ -229,7 +237,7 @@
   font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.8125rem;
   line-height: 1.55;
-  color: #8e9297;
+  color: var(--ifm-color-emphasis-700);
   margin: 0;
 }
 
