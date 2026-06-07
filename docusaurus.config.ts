@@ -7,10 +7,6 @@ const config: Config = {
   tagline: 'A Discord bot for small communities',
   favicon: 'img/favicon.ico',
 
-  future: {
-    v4: true,
-  },
-
   url: 'https://docs.guacamoleninja.com',
   baseUrl: '/',
 
