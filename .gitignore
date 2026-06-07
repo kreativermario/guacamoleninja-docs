@@ -3,4 +3,6 @@ node_modules/
 build/
 .cache/
 .wrangler/
+.pnpm-store/
+.pnpm-debug.log
 HANDOFF.md
