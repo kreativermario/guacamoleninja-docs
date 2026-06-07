@@ -25,7 +25,7 @@ Opens `http://localhost:3000` with hot-reload — most changes are reflected liv
 docker compose -f docker/docker-compose.dev.yml up
 ```
 
-Opens at `http://localhost:3001`. The container mounts the repo as a volume so edits to any source file trigger a live reload inside the container. Stop with `Ctrl+C`.
+Opens at `http://localhost:3000`. The container mounts the repo as a volume so edits to any source file trigger a live reload inside the container. Stop with `Ctrl+C`.
 
 ## Build
 
