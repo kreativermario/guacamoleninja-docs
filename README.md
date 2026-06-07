@@ -1,41 +1,64 @@
-# Website
+# guacamoleninja-docs
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Documentation site for [Guacamole Ninja Bot](https://github.com/kreativermario/guacamoleninja-bot), built with [Docusaurus](https://docusaurus.io/) and deployed to [docs.guacamoleninja.com](https://docs.guacamoleninja.com).
 
-## Installation
+## Prerequisites
 
-```bash
-yarn
-```
+- [Node.js](https://nodejs.org/) ≥ 20
+- [pnpm](https://pnpm.io/) (version pinned in `package.json`)
+- Or [Docker](https://docs.docker.com/get-docker/) for the containerised workflow
 
 ## Local Development
 
+### With pnpm
+
 ```bash
-yarn start
+pnpm install
+pnpm start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+Opens `http://localhost:3000` with hot-reload — most changes are reflected live without restarting.
+
+### With Docker (recommended for testing CSS/mobile)
+
+```bash
+docker compose -f docker/docker-compose.dev.yml up
+```
+
+Opens at `http://localhost:3001`. The container mounts the repo as a volume so edits to any source file trigger a live reload inside the container. Stop with `Ctrl+C`.
 
 ## Build
 
 ```bash
-yarn build
+pnpm build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+Generates the static site into `build/`. Preview it locally with:
+
+```bash
+pnpm serve
+```
+
+## Production Docker image
+
+```bash
+docker build -f docker/Dockerfile -t guacamoleninja-docs .
+docker run -p 8080:8080 guacamoleninja-docs
+```
+
+The production image builds the static site and serves it via nginx on port 8080.
+
+## Project structure
+
+```
+docs/          Markdown content (getting-started, commands, api, contributing)
+src/           Custom React pages and CSS
+static/        Static assets (images, favicon)
+sidebars.ts    Sidebar navigation config
+docusaurus.config.ts  Site config (navbar, footer, theme)
+docker/        Dockerfiles and compose files
+```
 
 ## Deployment
 
-Using SSH:
-
-```bash
-USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+The site deploys automatically to Cloudflare Pages on every push to `main`.
