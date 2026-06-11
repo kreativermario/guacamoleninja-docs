@@ -218,10 +218,96 @@
   color: #8e9297;
 }
 
+/*Hero and pages section*/
+[data-theme='dark'] .hero_aEcG {
+  background: #303846;
+  border-bottom: none;
+  z-index: 2;
+}
+
+[data-theme='light'] .hero_aEcG {
+  background: #303846;
+  border-bottom: none;
+  z-index: 2;
+}
+
+.content_ewlY {
+  position: relative;
+  border-top: none;
+  z-index: 1; 
+}
+
+/* background, dot, and mask styles */
+.content_ewlY::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1; /* Pushes it behind the text/cards */
+
+  /* mask styles */
+  background-color: #929367;
+  opacity: 0.7;
+  background-image: radial-gradient(circle, rgb(48, 56, 70, 0.2) 1.7999999999999998px, transparent 1.7999999999999998px);
+  background-size: 22.5px 22.5px;
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 65%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 65%);
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+
+[data-theme='dark'] .mainWrapper_hNRz {
+  background: #161a20;
+}
+
 /* ── Footer ───────────────────────────────────────── */
-[data-theme='dark'] .footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+.footer {
+  position: relative;
   text-align: center;
+  background: #303846;
+  z-index: 2;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: 33px;      /* 30px for the glow height + 3px for the border line */
+  pointer-events: none;
+
+  background-image: 
+    /* Layer 1: border line */
+    linear-gradient(
+      to right, 
+      transparent 10%, 
+      rgba(159, 193, 79, 0.4) 50%, 
+      transparent 90%
+    ),
+    /* Layer 2: radial ellipse */
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(159, 193, 79, 0.25) 0%, 
+      rgba(159, 193, 79, 0.05) 50%, 
+      transparent 75%
+    );
+
+  /* Set the sizes so they don't overwrite each other */
+  background-size: 
+    100% 3px,   /* The border line is full width but only 3px tall */
+    100% 30px;  /* The glow takes up the rest of the height */
+
+  /* Position them both at the bottom of the pseudo-element container */
+  background-position: 
+    bottom center, 
+    bottom center;
+
+  background-repeat: no-repeat;
 }
 
 .container-fluid {
